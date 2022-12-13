@@ -1,0 +1,24 @@
+{
+  "name": "strangerthingsproject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/sunnynair54/StrangerThings.git"
+  },
+  "author": "Sunny Nair",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sunnynair54/StrangerThings/issues"
+  },
+  "homepage": "https://github.com/sunnynair54/StrangerThings#readme",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "^5.0.1"
+  }
+}

@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Link } from "react-router-dom";
-import { Home, Login, Posts, Profile } from "./components";
+import { Home, Login, Posts, Profile, Signup} from "./components";
 
 const App = () => {
     const APIURL = 'https://strangers-things.herokuapp.com/api/2209-FTB-CT-WEB-PT'; 

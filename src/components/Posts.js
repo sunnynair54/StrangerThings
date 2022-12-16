@@ -18,8 +18,15 @@ const Posts = ({ APIURL }) => {
 
   return (
     <div>
-      {posts.map((post, i) => {
-        return <div key={i}>{post.title}</div>;
+      {posts.map((post) => {
+        return (
+          <div className="post_info" key={post._id}>
+            {post.author.username}
+            {post.title}
+            {post.price}
+            {post.description}
+          </div>
+        );
       })}
     </div>
   );

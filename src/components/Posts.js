@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { APIURL } from "..";
 
-const Posts = ({ APIURL }) => {
+const Posts = () => {
   const [posts, setPosts] = useState([]);
 
   const fetchpost = async () => {

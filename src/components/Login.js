@@ -1,19 +1,46 @@
 import React, { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+import { APIURL } from "..";
 
-const Login = () => {
+const Login = ({ setToken }) => {
+  const [error, setError] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const history = useHistory();
 
   const handleChange = (event) => {
     setUsername(event.target.value);
-    setPassword(event.target.value); 
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // const username = event.target.username.value
-    console.log(username);
-    console.log(password);
+
+    try {
+      const response = await fetch(`${APIURL}/users/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          user: {
+            username,
+            password,
+          },
+        }),
+      });
+      const json = await response.json();
+      if (json.success === false) {
+        throw json.error.message;
+      }
+
+      alert("Login successful");
+      setToken(json.data.token);
+      history.push("/Posts");
+    } catch (e) {
+      console.error(e);
+      setError(e);
+    }
+
     setUsername("");
     setPassword("");
   };
@@ -35,12 +62,13 @@ const Login = () => {
           type="password"
           name="password"
           value={password}
-          onChange={handleChange}
+          onChange={(event) => setPassword(event.target.value)}
         />
 
-        <button type="login">Login</button>
+        <button type="submit">Login</button>
       </form>
-      <button type="sign_up">Sign Up</button>
+      {error}
+      <Link to="/Signup">Signup</Link>
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import { APIURL } from ".";
 
-export const signup = async () => {
+export const signup = async (username, password) => {
   const response = await fetch(`${APIURL}/users/register`, {
     method: "POST",
     headers: {

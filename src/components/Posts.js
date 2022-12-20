@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { APIURL } from "..";
+import { Link } from "react-router-dom";
+
 
 const Posts = () => {
   const [posts, setPosts] = useState([]);
 
   const fetchpost = async () => {
-    const res = await fetch(`${APIURL}/Posts`);
+    const res = await fetch(`${APIURL}/posts`,);
     const data = await res.json();
     setPosts(data.data.posts);
 
@@ -18,18 +20,20 @@ const Posts = () => {
   }, []);
 
   return (
-    <div>
-      {posts.map((post) => {
-        return (
-          <div className="post_info" key={post._id}>
-            {post.author.username}
-            {post.title}
-            {post.price}
-            {post.description}
-          </div>
-        );
-      })}
-    </div>
+    <>
+      <Link to="/CreatePost">Create New Post</Link>
+      <div>
+        {posts.map((post) => {
+          return (
+            <div className="posts_info" key={post._id}>
+              <h2>{post.title}</h2>
+              <h3>{post.author.username}</h3>
+              <h3> {post.price}</h3>
+              <h3> {post.description}</h3>
+            </div>
+          );
+        })}
+      </div></>
   );
 };
 

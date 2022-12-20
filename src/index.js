@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Link } from "react-router-dom";
-import { Home, Login, Posts, Profile, Signup } from "./components";
+import { Home, Login, Posts, Profile, Signup, CreatePost } from "./components";
 
 export const APIURL =
   "https://strangers-things.herokuapp.com/api/2209-FTB-CT-WEB-PT";
 
 const App = () => {
   const [token, setToken] = useState(localStorage.getItem("myToken"));
-  const savedToken = (token) => {
+  const saveToken = (token) => {
     setToken(token);
     localStorage.setItem("myToken", token);
   };
@@ -36,10 +36,13 @@ const App = () => {
             <Profile token={token} />
           </Route>
           <Route path="/Login">
-            <Login setToken={savedToken} token={token} />
+            <Login setToken={saveToken} token={token} />
           </Route>
           <Route path="/Signup">
-            <Signup setToken={savedToken} />
+            <Signup setToken={saveToken} />
+          </Route>
+          <Route path="/CreatePost">
+            <CreatePost token={token} />
           </Route>
         </div>
       </div>

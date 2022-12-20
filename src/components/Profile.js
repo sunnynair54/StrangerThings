@@ -1,7 +1,7 @@
 import React from "react";
 
-const Profile = ({ token }) => {
-  return <div>{token}</div>;
+const Profile = () => {
+  return <div></div>;
 };
 
 export default Profile;

@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { APIURL } from "..";
-import {signup} from "../API";
+import { signup } from "../API";
+
+
+
+
 const Signup = ({ setToken }) => {
   const [error, setError] = useState("");
   const [username, setUsername] = useState("");
@@ -16,11 +20,12 @@ const Signup = ({ setToken }) => {
     event.preventDefault();
 
     try {
-     const tokenInfo = await signup(); 
+      const tokenInfo = await signup(username, password);
       alert("Signup successful");
       setToken(tokenInfo);
       history.push("/Posts");
     } catch (e) {
+      console.error(e)
       setError(e);
     }
 

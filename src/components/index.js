@@ -3,3 +3,4 @@ export { default as Login } from "./Login.js";
 export { default as Posts } from "./Posts.js";
 export { default as Profile } from "./Profile.js";
 export { default as Signup } from "./Signup.js";
+export { default as CreatePost } from "./CreatePost.js";

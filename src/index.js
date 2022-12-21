@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Link } from "react-router-dom";
-import { Home, Login, Posts, Profile, Signup, CreatePost } from "./components";
+import { Home, Login, Posts, Profile, Signup, CreatePost, Send_a_message } from "./components";
+
 
 export const APIURL =
   "https://strangers-things.herokuapp.com/api/2209-FTB-CT-WEB-PT";
@@ -18,11 +19,13 @@ const App = () => {
       <div>
         <header>
           <nav className="nav">
-            <h1>Stranger's Things</h1>
-            <Link to="/Home">Home</Link>
-            <Link to="/Posts">Posts</Link>
-            <Link to="/Profile">Profile</Link>
-            <Link to="/Login">Login</Link>
+            <h1 className="mainTitle">Stranger's Things</h1>
+            <h2 className="Links">
+              <Link to="/Home">Home</Link>
+              <Link to="/Posts">Posts</Link>
+              <Link to="/Profile">Profile</Link>
+              <Link to="/Login">Login</Link>
+            </h2>
           </nav>
         </header>
         <div>
@@ -43,6 +46,9 @@ const App = () => {
           </Route>
           <Route path="/CreatePost">
             <CreatePost token={token} />
+          </Route>
+          <Route path="/Send_a_message">
+            <Send_a_message token={token} />
           </Route>
         </div>
       </div>

@@ -3,6 +3,9 @@ import { APIURL } from "..";
 import { Link } from "react-router-dom";
 
 
+
+
+
 const Posts = () => {
   const [posts, setPosts] = useState([]);
 
@@ -30,6 +33,9 @@ const Posts = () => {
               <h3>{post.author.username}</h3>
               <h3> {post.price}</h3>
               <h3> {post.description}</h3>
+              <Link to="/Send_a_message">
+                <button>message</button>
+              </Link>
             </div>
           );
         })}

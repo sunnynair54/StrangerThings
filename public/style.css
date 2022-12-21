@@ -1,7 +1,28 @@
 .nav {
     min-height: 100px;
-    background-color: gray;
+    background-color: rgb(247, 130, 130);
     color: black;
 
 }
 
+.posts_info {
+    border: 2px solid black;
+    margin: 20px;
+    padding-left: 20px;
+}
+
+.mainTitle {
+    margin: ;
+    width: 20%;
+    display: flex;
+
+
+}
+
+.Links {
+    margin-left: 50%;
+    padding-bottom: 2%;
+    display: flex;
+    justify-content: space-evenly;
+   
+}

@@ -14,6 +14,8 @@ const App = () => {
     localStorage.setItem("myToken", token);
   };
 
+
+
   return (
     <BrowserRouter>
       <div>
@@ -24,8 +26,12 @@ const App = () => {
               <Link to="/Home">Home</Link>
               <Link to="/Posts">Posts</Link>
               <Link to="/Profile">Profile</Link>
-              <Link to="/Login">Login</Link>
+              <Link to="/Login"><button>Login</button></Link>
             </h2>
+            <span className="signInandOut">
+              <div className></div>
+
+            </span>
           </nav>
         </header>
         <div>

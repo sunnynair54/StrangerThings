@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { APIURL } from "..";
 import { Link } from "react-router-dom";
-import { async } from "q";
 
 
 
 
 
-const Posts = ({ token }) => {
+
+
+const Posts = ({ token, setPostId }) => {
   const [posts, setPosts] = useState([]);
 
+  useEffect(() => {
+    fetchpost()
+
+  }, []);
 
   const fetchpost = async () => {
     const res = await fetch(`${APIURL}/posts`, {
@@ -32,9 +37,9 @@ const Posts = ({ token }) => {
     fetchpost()
   }
 
-  const postDelete = async () => {
+  const postDelete = async (id) => {
     try {
-      const response = await fetch(`${APIURL}posts/${id}`, {
+      const response = await fetch(`${APIURL}/posts/${id}`, {
         method: "DELETE",
         headers: {
           'Content-Type': 'application/json',
@@ -47,40 +52,42 @@ const Posts = ({ token }) => {
     } catch (error) {
       console.log('err'.err);
     }
+  };
 
-    useEffect(() => {
-      fetchpost()
-
-    }, []);
-
-    return (
-      <>
-        <Link to="/CreatePost">Create New Post</Link>
-        <div>
-          {posts.map((post) => {
-            return (
-              <div className="posts_info" key={post._id}>
-                <h2>{post.title}</h2>
-                <h3>{post.author.username}</h3>
-                <h3> {post.price}</h3>
-                <h3> {post.description}</h3>
-                <div>
-                  {post.isAuthor === true ? `Posted by: ${post.author.username}` : ''}
-                </div>
-                {post.isAuthor === false ?
-                  <Link to="/Send_a_message">
-                    <button>Message</button>
-                  </Link>
-                  : ''}
-                <div>
-                  {post.isAuthor === true ? <button onClick={() => handleDelete(post._id)}>Delete</button> : ''}
-                </div>
-              </div>
-            );
-          })}
-        </div></>
-    );
+  const handleMessage = (id) => {
+    setPostId(id)
   }
+
+
+
+  return (
+    <>
+      <Link to="/CreatePost">Create New Post</Link>
+      <div>
+        {posts.map((post) => {
+          return (
+            <div className="posts_info" key={post._id}>
+              <h2>{post.title}</h2>
+              <h3>{post.author.username}</h3>
+              <h3> {post.price}</h3>
+              <h3> {post.description}</h3>
+              <div>
+                {post.isAuthor === true ? `Posted by: ${post.author.username}` : ''}
+              </div>
+              {post.isAuthor === false ?
+                <Link to="/Send_a_message">
+                  <button onClick={() => handleMessage(post._id)}>Message</button>
+                </Link>
+                : ''}
+              <div>
+                {post.isAuthor === true ? <button onClick={() => handleDelete(post._id)} id='deleteButton'>Delete</button> : ''}
+              </div>
+            </div>
+          );
+        })}
+      </div></>
+  );
 };
+
 
 export default Posts;

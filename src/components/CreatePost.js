@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useHistory } from "react-router-dom";
-// import { APIURL } from "..";
+
 
 const CreatePost = ({ token }) => {
     const [title, setTitle] = useState("");
@@ -11,52 +11,48 @@ const CreatePost = ({ token }) => {
 
     const handleTitle = (event) => {
         setTitle(event.target.value);
-        // setDescription(event.target.value);
-        // setPrice(event.target.value);
+
     }
     const handleDescription = (event) => {
-        // setTitle(event.target.value);
         setDescription(event.target.value);
-        // setPrice(event.target.value);
+
     }
     const handlePrice = (event) => {
-        // setTitle(event.target.value);
-        // setDescription(event.target.value);
         setPrice(event.target.value);
     }
 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        // try {
+        try {
 
-        const response = await fetch('https://strangers-things.herokuapp.com/api/2209-FTB-CT-WEB-PT/posts/', {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                'Authorization': `Bearer ${token}`
-            },
-            body: JSON.stringify({
-                post: {
-                    title: title,
-                    description: description,
-                    price: price,
-                    // willDeliver:
-                }
-            })
-        });
-        const postData = await response.json();
-        console.log(postData);
-        setTitle(postData.data.post.title);
-        setDescription(postData.data.post.title);
-        setPrice(postData.data.post.price);
+            const response = await fetch('https://strangers-things.herokuapp.com/api/2209-FTB-CT-WEB-PT/posts/', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    post: {
+                        title: title,
+                        description: description,
+                        price: price,
+
+                    }
+                })
+            });
+            const postData = await response.json();
+            console.log(postData);
+            setTitle(postData.data.post.title);
+            setDescription(postData.data.post.title);
+            setPrice(postData.data.post.price);
 
 
 
-        // } catch (e) {
-        // console.error(e);
+        } catch (e) {
+            console.error(e);
 
-        // }
+        }
         setTitle('')
         setDescription('')
         setPrice('')
@@ -64,7 +60,7 @@ const CreatePost = ({ token }) => {
 
     }
     return (
-        <div classname='createPost'>
+        <div className='createPost'>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="title">Title:</label>
                 <input
@@ -89,7 +85,6 @@ const CreatePost = ({ token }) => {
                     value={price}
                     onChange={handlePrice}
                 />
-                <radio></radio>
 
                 <button type="submit">Post!</button>
             </form>

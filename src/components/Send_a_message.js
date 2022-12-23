@@ -1,19 +1,18 @@
+import { async } from 'q';
 import React, { useState } from 'react'
 import { APIURL } from "..";
 
-const Send_a_message = ({ token }) => {
+const Send_a_message = ({ token, postId }) => {
     const [message, setMessage] = useState('')
+    console.log(postId)
 
-    const handleChange = (event) => {
-        setMessage(event.target.value);
-    };
 
     const handleMessage = async (event) => {
         event.preventDefault();
 
 
 
-        const res = await fetch(`${APIURL}posts/${posts._id}/messages`, {
+        const res = await fetch(`${APIURL}posts/${postId}/messages`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
@@ -21,13 +20,16 @@ const Send_a_message = ({ token }) => {
             },
             body: JSON.stringify({
                 message: {
-                    content: message
+                    content: `${message}`
                 }
             })
         });
         const data = await res.json();
-        setMessage(data);
+        setMessage('');
     }
+    const handleChange = async (event) => {
+        await setMessage(event.target.value);
+    };
 
     return (
         <div id="container">

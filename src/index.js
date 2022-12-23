@@ -13,6 +13,8 @@ const App = () => {
     setToken(token);
     localStorage.setItem("myToken", token);
   };
+  const [postId, setPostId] = useState('')
+
 
 
 
@@ -39,10 +41,12 @@ const App = () => {
             <Home token={token} />
           </Route>
           <Route path="/Posts">
-            <Posts token={token} />
+            <Posts token={token}
+              setPostId={setPostId} />
           </Route>
           <Route path="/Profile">
-            <Profile token={token} />
+            <Profile token={token}
+              postId={postId} />
           </Route>
           <Route path="/Login">
             <Login setToken={saveToken} token={token} />
@@ -54,7 +58,8 @@ const App = () => {
             <CreatePost token={token} />
           </Route>
           <Route path="/Send_a_message">
-            <Send_a_message token={token} />
+            <Send_a_message token={token}
+              postId={postId} />
           </Route>
         </div>
       </div>

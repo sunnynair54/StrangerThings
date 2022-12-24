@@ -10,11 +10,12 @@ import { Link } from "react-router-dom";
 
 const Posts = ({ token, setPostId }) => {
   const [posts, setPosts] = useState([]);
+  const [searching, setSearching] = useState('');
 
   useEffect(() => {
     fetchpost()
-
   }, []);
+
 
   const fetchpost = async () => {
     const res = await fetch(`${APIURL}/posts`, {
@@ -58,11 +59,34 @@ const Posts = ({ token, setPostId }) => {
     setPostId(id)
   }
 
+  const searchPosts = () => {
+    for (const element of posts) {
+      console.log(element)
+    };
+
+    console.log(searching)
+    console.log(posts.title)
+
+  }
+  // const handleSearch = (event) => {
+  //   event.preventDefault()
+  //   setSearching(event.target.value);
+  // };
 
 
   return (
     <>
       <Link to="/CreatePost">Create New Post</Link>
+      <input
+        className="searchBar"
+        type="text"
+        value={searching}
+        onChange={(event) => {
+          setSearching(event.target.value)
+          searchPosts()
+          console.log(searching)
+        }}
+      ></input>
       <div>
         {posts.map((post) => {
           return (

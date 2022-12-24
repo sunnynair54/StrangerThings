@@ -5,7 +5,7 @@ import { Home, Login, Posts, Profile, Signup, CreatePost, Send_a_message } from 
 
 
 export const APIURL =
-  "https://strangers-things.herokuapp.com/api/2209-FTB-CT-WEB-PT";
+  "https://20a4d1385484.ngrok.io/api/2209-FTB-CT-WEB-PT";
 
 const App = () => {
   const [token, setToken] = useState(localStorage.getItem("myToken"));
@@ -14,6 +14,13 @@ const App = () => {
     localStorage.setItem("myToken", token);
   };
   const [postId, setPostId] = useState('')
+
+
+  const removeToken = () => {
+    setToken(null)
+    localStorage.removeItem("myToken");
+  }
+
 
 
 
@@ -25,11 +32,16 @@ const App = () => {
           <nav className="nav">
             <h1 className="mainTitle">Stranger's Things</h1>
             <h2 className="Links">
-              <Link to="/Home">Home</Link>
+              <Link exact to="/Home">Home</Link>
               <Link to="/Posts">Posts</Link>
               <Link to="/Profile">Profile</Link>
-              <Link to="/Login"><button>Login</button></Link>
+              <Link to="/Login">
+                <div className="logoutbutton">
+                  {token === null ? <button>Login</button> : <button onClick={removeToken}>LogOut</button>}
+                </div>
+              </Link>
             </h2>
+
             <span className="signInandOut">
               <div className></div>
 

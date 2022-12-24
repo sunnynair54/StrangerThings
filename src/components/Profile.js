@@ -33,7 +33,22 @@ const Profile = ({ token }) => {
       }).map((post, i) => {
         return (
           <div className="posts_info" key={i}>
-            {post.title}
+            <h2>{post.author.username}</h2>
+            <h2>{post.title}</h2>
+            <h2> {post.price}</h2>
+            <h2> {post.description}</h2>
+            <div className="myMessages">
+              {post.messages.map((message, i) => {
+                return (
+                  <div key={i}>
+                    <h2 className="messageUserName">{message.fromUser.username}</h2>
+                    <h2 className="messageContent">{message.content}</h2>
+
+                  </div>)
+              })
+              }
+            </div>
+
 
           </div>
         )

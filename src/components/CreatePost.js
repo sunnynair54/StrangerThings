@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useHistory } from "react-router-dom";
+import { APIURL } from "..";
 
 
 const CreatePost = ({ token }) => {
@@ -26,7 +27,7 @@ const CreatePost = ({ token }) => {
 
         try {
 
-            const response = await fetch('https://strangers-things.herokuapp.com/api/2209-FTB-CT-WEB-PT/posts/', {
+            const response = await fetch(`${APIURL}/posts/`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -56,7 +57,7 @@ const CreatePost = ({ token }) => {
         setTitle('')
         setDescription('')
         setPrice('')
-        history.push()
+        history.push("/Posts")
 
     }
     return (

@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { APIURL } from "..";
+import { useHistory } from "react-router-dom";
 
 const Send_a_message = ({ token, postId }) => {
     const [message, setMessage] = useState('')
-    console.log(postId)
+    const history = useHistory();
+    // console.log(postId)
 
 
     const handleMessage = async (event) => {
@@ -26,6 +28,7 @@ const Send_a_message = ({ token, postId }) => {
             console.log(data)
             setMessage('');
             alert("Message Sent!")
+            history.push("/Posts");
         } catch (error) {
             console.error(error)
         }
@@ -38,17 +41,18 @@ const Send_a_message = ({ token, postId }) => {
 
 
     return (
-        <div id="container">
-            <div id="messages"></div>
+        <div className="sendAMessage">
             <form onSubmit={handleMessage}>
-                <label htmlFor="message">Message:</label>
-                <input
-                    type="text"
-                    name="message"
-                    value={message}
-                    onChange={handleChange}
-                />
-                <button type="submit">Send Message!</button>
+                <div className="messageCreate">
+                    <label className="message" htmlFor="message">Message:</label>
+                    <input className="messageContent"
+                        type="text"
+                        name="message"
+                        value={message}
+                        onChange={handleChange}
+                    />
+                </div>
+                <button className="sendMessageButton" type="submit">Send Message!</button>
             </form>
         </div>
     )

@@ -61,33 +61,39 @@ const CreatePost = ({ token }) => {
 
     }
     return (
-        <div className='createPost'>
+        <div className='createPostCenter'>
             <form onSubmit={handleSubmit}>
-                <label htmlFor="title">Title:</label>
-                <input
-                    type="text"
-                    name="Title"
-                    value={title}
-                    onChange={handleTitle}
-                />
+                <div className="postCreate">
+                    <label className="titleLabel" htmlFor="title">Title:</label>
+                    <input className="titleInput"
+                        type="text"
+                        name="Title"
+                        value={title}
+                        onChange={handleTitle}
+                    />
+                </div>
 
-                <label htmlFor="description">Description:</label>
-                <input
-                    type="text"
-                    name="description"
-                    value={description}
-                    onChange={handleDescription}
-                />
+                <div className="postCreate">
+                    <label className="descriptionLabel" htmlFor="description">Description:</label>
+                    <input className="descriptionInput"
+                        type="text"
+                        name="description"
+                        value={description}
+                        onChange={handleDescription}
+                    />
+                </div>
 
-                <label htmlFor="price">Price:</label>
-                <input
-                    type="text"
-                    name="price"
-                    value={price}
-                    onChange={handlePrice}
-                />
+                <div className="postCreate">
+                    <label className="priceLabel" htmlFor="price">Price:</label>
+                    <input className="priceInput"
+                        type="text"
+                        name="price"
+                        value={price}
+                        onChange={handlePrice}
+                    />
+                </div>
 
-                <button type="submit">Post!</button>
+                <button className="createButton" type="submit">Post!</button>
             </form>
         </div>
     )

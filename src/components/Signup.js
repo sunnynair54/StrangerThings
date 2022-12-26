@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { signup } from "../API";
+import { Link } from "react-router-dom";
+
 
 
 
@@ -33,27 +35,32 @@ const Signup = ({ setToken }) => {
   };
 
   return (
-    <div id="container">
-      <div id="navbar"></div>
+    <div className="signUpCenter">
       <form onSubmit={handleSubmit}>
-        <label htmlFor="username">Username:</label>
-        <input
-          type="text"
-          name="username"
-          value={username}
-          onChange={handleChange}
-        />
+        <div>
+          <label className="usernameText" htmlFor="username">New Username:</label>
+          <input className="userInput"
+            type="text" required
+            name="username"
+            value={username}
+            minlength="5"
+            onChange={handleChange}
+          />
+        </div>
 
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          name="password"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-        />
-
-        <button type="submit">Create</button>
-        {error}
+        <div>
+          <label className="passwordText" htmlFor="password">New Password:</label>
+          <input className="passInput"
+            type="password" required
+            name="password"
+            value={password}
+            minlength="5"
+            onChange={(event) => setPassword(event.target.value)}
+          />
+        </div>
+        <button className="createButton" type="submit">Create Stranger!</button>
+        <div className="signInError">{error}</div>
+        <div className="logInSignUp2"><Link to="/Login">Login</Link></div>
       </form>
     </div>
   );

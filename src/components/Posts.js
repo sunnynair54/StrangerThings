@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { APIURL } from "..";
 import { Link } from "react-router-dom";
+import { async } from "q";
 
 
 
@@ -61,11 +62,11 @@ const Posts = ({ token, setPostId }) => {
 
   const searchPosts = () => {
     for (const element of posts) {
-      console.log(element)
+      return (posts.title)
     };
 
     console.log(searching)
-    console.log(posts.title)
+
 
   }
   // const handleSearch = (event) => {
@@ -76,10 +77,11 @@ const Posts = ({ token, setPostId }) => {
 
   return (
     <>
-      <Link to="/CreatePost">Create New Post</Link>
+      {token === null ? '' : <Link className="CreatePostLink" to="/CreatePost">Create Strange New Post</Link>}
       <input
         className="searchBar"
         type="text"
+        placeholder="Search Strange Things?"
         value={searching}
         onChange={(event) => {
           setSearching(event.target.value)
@@ -87,25 +89,26 @@ const Posts = ({ token, setPostId }) => {
           console.log(searching)
         }}
       ></input>
-      <div>
-        {posts.map((post) => {
+      <div className="postBody">
+        {posts.reverse().map((post) => {
           return (
             <div className="posts_info" key={post._id}>
-              <h2>{post.title}</h2>
-              <h3>{post.author.username}</h3>
-              <h3> {post.price}</h3>
-              <h3> {post.description}</h3>
-              <div>
-                {post.isAuthor === true ? `Posted by: ${post.author.username}` : ''}
+              <h2 className="postTitle">Title: {post.title}</h2>
+              <h3 className="postAuthor">Author: {post.author.username}</h3>
+              <h3 className="postPrice"> Price: ${post.price}</h3>
+              <h3 className="postDescription"> Description: {post.description}</h3>
+              <div className="username">
+                {post.isAuthor === true ? `Posted by you: ${post.author.username}` : ''}
+
+                {post.isAuthor === true ? <button className="deleteButton" onClick={() => handleDelete(post._id)} id='deleteButton'>Delete</button> : ''}
+
               </div>
-              {post.isAuthor === false ?
-                <Link to="/Send_a_message">
-                  <button onClick={() => handleMessage(post._id)}>Message</button>
-                </Link>
-                : ''}
-              <div>
-                {post.isAuthor === true ? <button onClick={() => handleDelete(post._id)} id='deleteButton'>Delete</button> : ''}
-              </div>
+              {token === null ? '' : <div>{
+                post.isAuthor === false ? <Link to="/Send_a_message">
+                  <button className="messageButton" onClick={() => handleMessage(post._id)}>Message</button>
+                </Link> : ''
+              }
+              </div>}
             </div>
           );
         })}

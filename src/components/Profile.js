@@ -21,6 +21,29 @@ const Profile = ({ token }) => {
       console.error(error)
     }
   }
+
+  const postDelete = async (id) => {
+    try {
+      const response = await fetch(`${APIURL}/posts/${id}`, {
+        method: "DELETE",
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      });
+
+      const deletedPost = await response.json();
+      console.log(deletedPost);
+    } catch (error) {
+      console.log('err'.err);
+    }
+  };
+
+  const handleDelete = async (id) => {
+    await postDelete(id)
+    postedByMe()
+  }
+
   useEffect(() => {
     postedByMe();
 
@@ -33,16 +56,16 @@ const Profile = ({ token }) => {
       }).map((post, i) => {
         return (
           <div className="posts_info" key={i}>
-            <h2>{post.author.username}</h2>
-            <h2>{post.title}</h2>
-            <h2> {post.price}</h2>
-            <h2> {post.description}</h2>
+            <h2 className="postTitle" >Title: {post.title}</h2>
+            <h2 className="postPrice">Price: ${post.price}</h2>
+            <h2 className="postDescription" >Description: {post.description}</h2>
             <div className="myMessages">
               {post.messages.map((message, i) => {
                 return (
                   <div key={i}>
-                    <h2 className="messageUserName">{message.fromUser.username}</h2>
-                    <h2 className="messageContent">{message.content}</h2>
+                    <h3 className="gotMessages">message:</h3>
+                    <h5 className="messageUserName">From: {message.fromUser.username}</h5>
+                    <h5 className="messageContent">"{message.content}"</h5>
 
                   </div>)
               })
@@ -50,6 +73,8 @@ const Profile = ({ token }) => {
             </div>
 
 
+            <div>{post.active === true ? <button className="deleteButton" onClick={() => handleDelete(post._id)} >Delete</button> : ''}
+            </div>
           </div>
         )
 

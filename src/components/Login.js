@@ -47,29 +47,32 @@ const Login = ({ setToken }) => {
 
 
   return (
-    <div id="container">
-      <div id="navbar"></div>
+    <div className="logCenter">
       <form onSubmit={handleSubmit}>
-        <label htmlFor="username">Username:</label>
-        <input
-          type="text"
-          name="username"
-          value={username}
-          onChange={handleChange}
-        />
+        <div className="user">
+          <label className="usernameText" htmlFor="username">Username:</label>
+          <input className="userInput"
+            type="text" required
+            name="username"
+            value={username}
+            onChange={handleChange}
+          />
+        </div>
 
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          name="password"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-        />
+        <div className="password">
+          <label className="passwordText" htmlFor="password">Password:</label>
+          <input className="passInput"
+            type="password" required
+            name="password"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+          />
+        </div>
 
-        <button type="submit">Login</button>
+        <button className="logInButton" type="submit">Login</button>
       </form>
-      {error}
-      <Link to="/Signup">Signup</Link>
+      <div className="signInError">{error}</div>
+      <h2 className="signupMessage">Not a Stranger? <Link to="/Signup">Signup</Link></h2>
     </div>
   );
 };

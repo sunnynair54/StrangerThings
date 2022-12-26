@@ -60,7 +60,7 @@ const Signup = ({ setToken }) => {
         </div>
         <button className="createButton" type="submit">Create Stranger!</button>
         <div className="signInError">{error}</div>
-        <div className="logInSignUp2"><Link to="/Login">Login</Link></div>
+        <div className="logInSignUp2"><Link className="logInSignUpButton2" to="/Login">Login</Link></div>
       </form>
     </div>
   );

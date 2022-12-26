@@ -106,12 +106,16 @@
 }
 
 .deleteButton:hover {
-    color: red;
+    color: rgb(255, 2, 2);
 }
 
 .signupMessage {
     padding-left: 10px;
     color: rgb(198, 80, 80);
+}
+
+.signupLink {
+    color: lightblue;
 }
 
 .logCenter {
@@ -243,6 +247,10 @@
     padding-bottom: 10px;
 }
 
+.logInSignUpButton {
+    color: lightblue;
+}
+
 .logInSignUp2 {
     display: flex;
     float: left;
@@ -250,6 +258,10 @@
     padding-left: 15px;
     font-size: x-large;
 
+}
+
+.logInSignUpButton2 {
+    color: lightblue;
 }
 
 .sendAMessage {

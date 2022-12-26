@@ -64,8 +64,8 @@ const Profile = ({ token }) => {
                 return (
                   <div key={i}>
                     <h3 className="gotMessages">message:</h3>
-                    <h5 className="messageUserName">From: {message.fromUser.username}</h5>
-                    <h5 className="messageContent">"{message.content}"</h5>
+                    <h4 className="messageUserName">From: {message.fromUser.username}</h4>
+                    <h4 className="messageContent">"{message.content}"</h4>
 
                   </div>)
               })
